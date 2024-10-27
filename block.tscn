@@ -1,16 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy7ypu06okbq2"]
+[gd_scene load_steps=5 format=4 uid="uid://cy7ypu06okbq2"]
 
 [ext_resource type="Texture2D" uid="uid://cauq2fv313pd0" path="res://sprites/block.png" id="1_u87c8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ftv5"]
-size = Vector2(32, 32)
-
-[node name="Area2D" type="StaticBody2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_50ysi"]
 texture = ExtResource("1_u87c8")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[sub_resource type="TileSet" id="TileSet_kbxce"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_50ysi")
+
+[sub_resource type="GDScript" id="GDScript_em6oa"]
+script/source = "extends TileMapLayer
+
+
+# Called when the node enters the scene tree for the first time.
+@warning_ignore(\"unused_parameter\")
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore(\"unused_parameter\")
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Area2D" type="TileMapLayer"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD3////AAAAAAAAAAD3/wAAAAAAAAEAAAD4////AAABAAAAAAD4/wAAAAABAAEAAAD5////AAAAAAAAAAD5/wAAAAAAAAEAAAD6////AAABAAAAAAD6/wAAAAABAAEAAAD7////AAAAAAAAAAD7/wAAAAAAAAEAAAD8////AAABAAAAAAD8/wAAAAABAAEAAAD9////AAAAAAAAAAD9/wAAAAAAAAEAAAD+////AAABAAAAAAD+/wAAAAABAAEAAAD/////AAAAAAAAAAD//wAAAAAAAAEAAAAAAP//AAABAAAAAAAAAAAAAAABAAEAAAABAP//AAAAAAAAAAABAAAAAAAAAAEAAAACAP//AAABAAAAAAACAAAAAAABAAEAAAADAP//AAAAAAAAAAADAAAAAAAAAAEAAAAEAP//AAABAAAAAAAEAAAAAAABAAEAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAEAAAAGAP//AAABAAAAAAAGAAAAAAABAAEAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAEAAAAIAP//AAABAAAAAAAIAAAAAAABAAEAAAAJAP//AAAAAAAAAAAJAAAAAAAAAAEAAAAKAP//AAABAAAAAAAKAAAAAAABAAEAAAALAP//AAAAAAAAAAALAAAAAAAAAAEAAAAMAP//AAABAAAAAAAMAAAAAAABAAEAAAANAP//AAAAAAAAAAANAAAAAAAAAAEAAAAOAP//AAABAAAAAAAOAAAAAAABAAEAAAAPAP//AAAAAAAAAAAPAAAAAAAAAAEAAAAQAP//AAABAAAAAAAQAAAAAAABAAEAAAARAP//AAAAAAAAAAARAAAAAAAAAAEAAAASAP//AAABAAAAAAASAAAAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_kbxce")
+script = SubResource("GDScript_em6oa")
+
+[node name="Sprite2D" type="TileMapLayer" parent="."]
 position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_8ftv5")

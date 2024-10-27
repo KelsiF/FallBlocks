@@ -17,6 +17,7 @@ func player_falling(delta):
 		velocity.y += 1000 * delta
 		
 
+@warning_ignore("unused_parameter")
 func player_run(delta):
 	var direction = Input.get_axis("left", "right")
 	
@@ -25,6 +26,7 @@ func player_run(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, 300)
 
+@warning_ignore("unused_parameter")
 func player_jump(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
