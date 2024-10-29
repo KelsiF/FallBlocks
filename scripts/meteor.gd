@@ -15,8 +15,6 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		await call_deferred("queue_free")
-		get_tree().reload_current_scene()
-		print("scene reloaded")
+		Main.playerDead.emit()
 	if body.name == "Area2D":
 		await call_deferred("queue_free")
-		print("block fall on ground")

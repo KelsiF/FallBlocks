@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjo861uhva3fc"]
 
 [ext_resource type="Script" path="res://scripts/meteor.gd" id="1_4qsrc"]
-[ext_resource type="Texture2D" uid="uid://cauq2fv313pd0" path="res://sprites/block.png" id="1_tqb14"]
+[ext_resource type="Texture2D" uid="uid://bvjxbhes3hern" path="res://sprites/meteor.png" id="2_qykj0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fda02"]
 size = Vector2(64, 64)
@@ -15,10 +15,22 @@ script = ExtResource("1_4qsrc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
-texture = ExtResource("1_tqb14")
+position = Vector2(4, -4)
+scale = Vector2(3.96, 3.96)
+texture = ExtResource("2_qykj0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fda02")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 73
+emission_shape = 1
+emission_sphere_radius = 32.13
+gravity = Vector2(0, -980)
+angle_min = -194.6
+angle_max = 136.2
+scale_amount_min = 4.4
+scale_amount_max = 4.4
+color = Color(0.920999, 0.465112, 3.85046e-07, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

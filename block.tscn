@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=4 uid="uid://cy7ypu06okbq2"]
+[gd_scene load_steps=7 format=4 uid="uid://cy7ypu06okbq2"]
 
-[ext_resource type="Texture2D" uid="uid://cauq2fv313pd0" path="res://sprites/block.png" id="1_u87c8"]
+[ext_resource type="Texture2D" uid="uid://nar7j0cahel" path="res://sprites/block.png" id="1_u87c8"]
+[ext_resource type="Texture2D" uid="uid://hbf8tj4cb3up" path="res://sprites/dirt.png" id="2_vy7q5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_50ysi"]
 texture = ExtResource("1_u87c8")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uro1d"]
+texture = ExtResource("2_vy7q5")
+0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_kbxce"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_50ysi")
+sources/1 = SubResource("TileSetAtlasSource_uro1d")
 
 [sub_resource type="GDScript" id="GDScript_em6oa"]
 script/source = "extends TileMapLayer

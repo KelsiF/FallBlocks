@@ -1,13 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://lxdqmxrdeo4d"]
+[gd_scene load_steps=7 format=3 uid="uid://lxdqmxrdeo4d"]
 
-[ext_resource type="Texture2D" uid="uid://cdhmb3tw2yk2o" path="res://sprites/player.png" id="1_owdvo"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_yglf6"]
+[ext_resource type="Texture2D" uid="uid://bgjhkcyh24egv" path="res://sprites/character-Sheet.png" id="2_ylcwx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkpu7"]
+atlas = ExtResource("2_ylcwx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_626bo"]
+atlas = ExtResource("2_ylcwx")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k48u0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_owdvo")
+"texture": SubResource("AtlasTexture_tkpu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_626bo")
 }],
 "loop": true,
 "name": &"default",
