@@ -6,8 +6,6 @@ func on_dead():
 func _ready():
 	$AnimatedSprite2D.play("default")	
 	Main.playerDead.connect(_on_player_dead)
-	await get_tree().create_timer(5.0).timeout
-	print("timer")
 
 
 func _physics_process(delta):
@@ -25,11 +23,14 @@ func player_falling(delta):
 @warning_ignore("unused_parameter")
 func player_run(delta):
 	var direction = Input.get_axis("left", "right")
-	
 	if direction:
 		velocity.x = direction * 300
 	else:
 		velocity.x = move_toward(velocity.x, 0, 300)
+	if Input.is_action_pressed("left"):
+		$AnimatedSprite2D.flip_h = true
+	if Input.is_action_pressed("right"):
+		$AnimatedSprite2D.flip_h = false
 
 @warning_ignore("unused_parameter")
 func player_jump(delta):
@@ -38,6 +39,8 @@ func player_jump(delta):
 			velocity.y = -400
 			
 func _on_player_dead():
-	hide()
-	await get_tree().create_timer(1.0).timeout
+	$AnimatedSprite2D.hide()
+	$CPUParticles2D.emitting = true
+	$CollisionShape2D.call_deferred("queue_free")
+	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()
