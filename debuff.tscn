@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://o6r6dp0206d2"]
+
+[ext_resource type="Texture2D" uid="uid://dwjaoi4ah613j" path="res://sprites/debuff.png" id="1_brdrj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glffv"]
+size = Vector2(14, 14)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 5
+gravity_scale = 0.25
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_brdrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_glffv")
