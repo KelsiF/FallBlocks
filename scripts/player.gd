@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+var speed = 300
+var speedMultiplier = 1.0
+
 func on_dead():
 	await call_deferred("queue_free")
 
@@ -24,9 +27,9 @@ func player_falling(delta):
 func player_run(delta):
 	var direction = Input.get_axis("left", "right")
 	if direction:
-		velocity.x = direction * 300
+		velocity.x = direction * speed*speedMultiplier
 	else:
-		velocity.x = move_toward(velocity.x, 0, 300)
+		velocity.x = move_toward(velocity.x, 0, speed*speedMultiplier)
 	if Input.is_action_pressed("left"):
 		$AnimatedSprite2D.flip_h = true
 	if Input.is_action_pressed("right"):
@@ -44,3 +47,7 @@ func _on_player_dead():
 	$CollisionShape2D.call_deferred("queue_free")
 	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()
+
+func _on_sprint_signal():
+	speedMultiplier = 1.5
+	print("sprint buff")

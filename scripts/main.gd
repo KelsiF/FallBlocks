@@ -2,6 +2,13 @@ extends Node2D
 
 signal playerDead
 
+#buffs signals
+signal sprintSignal
+signal miniSignal
+signal assasinSignal
+signal immortalitySignal
+signal double_chanceSignal
+
 var playerIsDead = false
 var meteor = preload("res://meteor.tscn")
 var buff = preload("res://buff.tscn")
@@ -9,7 +16,15 @@ var debuff = preload("res://debuff.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_meteors(0)
+	spawn_buffs()
 	Main.playerDead.connect(_on_player_dead)
+	
+	#buffs signals initialize
+	Main.sprintSignal.connect(_on_buff)
+	Main.miniSignal.connect(_on_buff)
+	Main.assasinSignal.connect(_on_buff)
+	Main.immortalitySignal.connect(_on_buff)
+	Main.double_chanceSignal.connect(_on_buff)
 	
 
 
@@ -21,10 +36,11 @@ func _process(delta: float) -> void:
 func _on_player_dead():
 	playerIsDead = true	
 
+func _on_buff():
+	pass
+
 func spawn_meteors(count):
 	var rng = RandomNumberGenerator.new()
-	var chanceBuff = 1
-	var buffSpawned = false
 	
 	
 	while playerIsDead == false:
@@ -34,9 +50,17 @@ func spawn_meteors(count):
 		instance.position = Vector2(x, y)
 		await get_tree().create_timer(rng.randf_range(0.1, 0.5)).timeout
 		add_child(instance)
-		
+
+func spawn_buffs():
+	
+	var rng = RandomNumberGenerator.new()
+	var chanceBuff = 1
+	var buffSpawned = false
+	
+	while playerIsDead == false:
+		await get_tree().create_timer(10.0).timeout
 		chanceBuff = rng.randi_range(1, 100)
-		if (chanceBuff >= 10):
+		if (chanceBuff <= 50):
 			buffSpawned = true
 		if (buffSpawned):
 			var buffOrDebuff = rng.randi_range(1, 100)
