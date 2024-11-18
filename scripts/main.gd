@@ -9,6 +9,10 @@ signal assasinSignal
 signal immortalitySignal
 signal double_chanceSignal
 
+#label signals
+signal buff_textSignal
+signal buff_default_textSignal
+
 var playerIsDead = false
 var meteor = preload("res://meteor.tscn")
 var buff = preload("res://buff.tscn")
@@ -20,11 +24,7 @@ func _ready() -> void:
 	Main.playerDead.connect(_on_player_dead)
 	
 	#buffs signals initialize
-	Main.sprintSignal.connect(_on_buff)
-	Main.miniSignal.connect(_on_buff)
-	Main.assasinSignal.connect(_on_buff)
-	Main.immortalitySignal.connect(_on_buff)
-	Main.double_chanceSignal.connect(_on_buff)
+	initialize_buffs()
 	
 
 
@@ -74,3 +74,10 @@ func spawn_buffs():
 				instanceDebuff.position = Vector2(rng.randf_range(0, 1270), rng.randf_range(-70, -900))
 				await get_tree().create_timer(0.5)
 				add_child(instanceDebuff)
+
+func initialize_buffs():
+	Main.sprintSignal.connect(_on_buff)
+	Main.miniSignal.connect(_on_buff)
+	Main.assasinSignal.connect(_on_buff)
+	Main.immortalitySignal.connect(_on_buff)
+	Main.double_chanceSignal.connect(_on_buff)

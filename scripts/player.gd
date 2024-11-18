@@ -3,12 +3,17 @@ extends CharacterBody2D
 var speed = 300
 var speedMultiplier = 1.0
 
+var onImmortality = false
+
 func on_dead():
 	await call_deferred("queue_free")
 
 func _ready():
 	$AnimatedSprite2D.play("default")	
 	Main.playerDead.connect(_on_player_dead)
+	Main.sprintSignal.connect(_on_sprint_signal)
+	Main.miniSignal.connect(_on_mini_signal)
+	Main.immortalitySignal.connect(_on_immortality_signal)
 
 
 func _physics_process(delta):
@@ -51,3 +56,25 @@ func _on_player_dead():
 func _on_sprint_signal():
 	speedMultiplier = 1.5
 	print("sprint buff")
+	buff_timer(5.0, "Ускорение")
+
+func _on_mini_signal():
+	var sizeMultiplier = 0.5
+	scale *= sizeMultiplier
+	print("mini buff")
+	buff_timer(5.0, "Уменьшение")
+
+func _on_immortality_signal():
+	onImmortality = true
+	print("immortality buff")
+	buff_timer(3.0, "Бессмертие")
+
+
+func buff_timer(sec: float, buff: String):
+	var i = 0
+	while i < sec:
+		await get_tree().create_timer(1.0).timeout
+		Main.buff_textSignal.emit(buff, sec-i)
+		i += 1
+	if  i >= sec:
+		Main.buff_default_textSignal.emit()

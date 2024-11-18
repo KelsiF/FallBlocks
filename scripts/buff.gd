@@ -1,12 +1,12 @@
 extends RigidBody2D
 
-var buffs = ["sprint", "mini", "assasin", "immortality", "double_chance"]
+var buffs = ["sprint", "mini", "immortality"]
 var buff = "null"
 var rng = RandomNumberGenerator.new()
 
 @warning_ignore("unused_parameter")
 func _ready() -> void:
-	var buff_number = rng.randi_range(1, 5)
+	var buff_number = rng.randi_range(0, 2)
 	buff = buffs[buff_number]
 
 @warning_ignore("unused_parameter")
@@ -21,16 +21,18 @@ func _on_body_entered(body: Node) -> void:
 		
 		match buff:
 			"sprint":
-				print("sprint")
+				sprint_buff()
 			"mini":
-				print("mini")
-			"assasin":
-				print("assasin")
+				mini_buff()
 			"immortality":
-				print("immortality")
-			"double_chance":
-				print("double_chance")
+				immortality_buff()
 
 
-func sprint_buff(default_speed, multiplier):
+func sprint_buff():
 	Main.sprintSignal.emit()
+
+func mini_buff():
+	Main.miniSignal.emit()
+
+func immortality_buff():
+	Main.immortalitySignal.emit()
