@@ -55,20 +55,16 @@ func _on_player_dead():
 
 func _on_sprint_signal():
 	speedMultiplier = 1.5
-	print("sprint buff")
 	buff_timer(5.0, "Ускорение")
 
 func _on_mini_signal():
-	var sizeMultiplier = 0.5
-	scale *= sizeMultiplier
-	print("mini buff")
-	buff_timer(5.0, "Уменьшение")
+	scale.x = 0.5
+	scale.y = 0.5
+	buff_timer(3.5, "Уменьшение")
 
 func _on_immortality_signal():
 	onImmortality = true
-	print("immortality buff")
-	buff_timer(3.0, "Бессмертие")
-
+	buff_timer(3.5, "Бессмертие")
 
 func buff_timer(sec: float, buff: String):
 	var i = 0
@@ -78,3 +74,12 @@ func buff_timer(sec: float, buff: String):
 		i += 1
 	if  i >= sec:
 		Main.buff_default_textSignal.emit()
+		
+		match buff:
+			"Ускорение":
+				speedMultiplier = 1.0
+			"Уменьшение":
+				scale.x = 1
+				scale.y = 1
+			"Бессмертие":
+				onImmortality = false

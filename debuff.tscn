@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://o6r6dp0206d2"]
+[gd_scene load_steps=4 format=3 uid="uid://o6r6dp0206d2"]
 
 [ext_resource type="Texture2D" uid="uid://dwjaoi4ah613j" path="res://sprites/debuff.png" id="1_brdrj"]
+[ext_resource type="Script" path="res://scripts/debuff.gd" id="1_ysrxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glffv"]
 size = Vector2(14, 14)
@@ -11,6 +12,7 @@ collision_mask = 5
 gravity_scale = 0.25
 contact_monitor = true
 max_contacts_reported = 10
+script = ExtResource("1_ysrxf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -20,3 +22,5 @@ texture = ExtResource("1_brdrj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_glffv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -21,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("2_ja36g")
 
 [node name="Debuff" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1030.0
 offset_top = 20.0
 offset_right = 1261.0

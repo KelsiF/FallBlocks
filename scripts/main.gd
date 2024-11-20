@@ -5,9 +5,12 @@ signal playerDead
 #buffs signals
 signal sprintSignal
 signal miniSignal
-signal assasinSignal
 signal immortalitySignal
-signal double_chanceSignal
+
+#debuff signals
+signal slowSignal
+signal gigantSignal
+signal blidnessSignal
 
 #label signals
 signal buff_textSignal
@@ -81,3 +84,6 @@ func initialize_buffs():
 	Main.assasinSignal.connect(_on_buff)
 	Main.immortalitySignal.connect(_on_buff)
 	Main.double_chanceSignal.connect(_on_buff)
+	Main.slowSignal.connect(_on_buff)
+	Main.gigantSignal.connect(_on_buff)
+	Main.blidness.connect(_on_buff)
