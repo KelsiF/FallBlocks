@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://lxdqmxrdeo4d"]
+[gd_scene load_steps=6 format=3 uid="uid://lxdqmxrdeo4d"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_yglf6"]
 [ext_resource type="Texture2D" uid="uid://bgjhkcyh24egv" path="res://sprites/character-Sheet.png" id="2_ylcwx"]
@@ -25,9 +25,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwekh"]
-size = Vector2(52, 58)
-
 [node name="Player" type="CharacterBody2D" groups=["meteors"]]
 texture_filter = 1
 collision_mask = 4
@@ -37,10 +34,10 @@ script = ExtResource("1_yglf6")
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_k48u0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 light_mask = 0
 position = Vector2(-2, 3)
-shape = SubResource("RectangleShape2D_pwekh")
+polygon = PackedVector2Array(-12, 7, -12, 19, -10, 19, -10, 27, -8, 27, -8, 29, -4, 29, -4, 27, -2, 27, -2, 25, 0, 25, 0, 23, 2, 23, 2, 25, 4, 25, 4, 29, 8, 29, 8, 25, 10, 25, 10, 19, 12, 19, 12, 7, 10, 7, 10, 5, 14, 5, 14, 3, 16, 3, 16, 1, 18, 1, 20, -1, 24, -1, 24, -19, 20, -21, 18, -22, -20, -22, -22, -17, -24, -17, -24, -15, -22, -15, -22, -13, -24, -13, -26, -11, -26, -8, -25, -7, -24, -7, -24, -5, -20, -5, -18, -7, -18, 1, -16, 1, -16, 3, -14, 3, -14, 5, -10, 5)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(0, -5)

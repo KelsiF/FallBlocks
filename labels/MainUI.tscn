@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://cme02ufidu0ik"]
+
+[ext_resource type="FontFile" uid="uid://yic6ujcd6d4q" path="res://fonts/Milk(RUS BY LYAJKA) Regular.ttf" id="1_rj1e4"]
+[ext_resource type="Script" path="res://scripts/buffLabel.gd" id="2_ja36g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gowc5"]
+font = ExtResource("1_rj1e4")
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.572549)
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ja36g")
+
+[node name="Debuff" type="Label" parent="."]
+layout_mode = 0
+offset_left = 937.0
+offset_top = 21.0
+offset_right = 1168.0
+offset_bottom = 116.0
+text = "Ослабление:
+null"
+label_settings = SubResource("LabelSettings_gowc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buff" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 21.0
+offset_right = 251.0
+offset_bottom = 116.0
+text = "Усиление:
+null"
+label_settings = SubResource("LabelSettings_gowc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 21.0
+offset_right = 727.0
+offset_bottom = 116.0
+text = "0"
+label_settings = SubResource("LabelSettings_gowc5")
+horizontal_alignment = 1
+vertical_alignment = 1

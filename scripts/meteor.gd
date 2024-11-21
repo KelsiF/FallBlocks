@@ -22,6 +22,7 @@ func _on_body_entered(body: Node) -> void:
 		else:
 			print("Вы не погибли!")
 	if body.name == "Area2D":
+		Main.score_changeSignal.emit()
 		$Sprite2D.hide()
 		$CollisionShape2D.call_deferred("queue_free")
 		$CPUParticles2D.call_deferred("queue_free")

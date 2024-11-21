@@ -1,12 +1,12 @@
 extends RigidBody2D
 
-var debuffs = ["slow", "gigant", "blidness"]
-var debuff = "null"
+var debuffs = ["slow", "gigant"]
+var debuff = "null1"
 var rng = RandomNumberGenerator.new()
 
 @warning_ignore("unused_parameter")
 func _ready() -> void:
-	var debuff_number = rng.randi_range(0, 2)
+	var debuff_number = rng.randi_range(0, 1)
 	debuff = debuffs[debuff_number]
 
 
@@ -19,8 +19,6 @@ func _on_body_entered(body: Node) -> void:
 				slow_debuff()
 			"gigant":
 				gigant_debuff()
-			"blidness":
-				blidness_debuff()
 
 
 func slow_debuff():
@@ -28,6 +26,3 @@ func slow_debuff():
 
 func gigant_debuff():
 	Main.gigantSignal.emit()
-
-func blidness_debuff():
-	Main.blidnessSignal.emit()

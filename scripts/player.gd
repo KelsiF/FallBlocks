@@ -14,6 +14,8 @@ func _ready():
 	Main.sprintSignal.connect(_on_sprint_signal)
 	Main.miniSignal.connect(_on_mini_signal)
 	Main.immortalitySignal.connect(_on_immortality_signal)
+	Main.slowSignal.connect(_on_slow_signal)
+	Main.gigantSignal.connect(_on_gigant_signal)
 
 
 func _physics_process(delta):
@@ -53,6 +55,8 @@ func _on_player_dead():
 	await get_tree().create_timer(3.0).timeout
 	get_tree().reload_current_scene()
 
+#buff functions
+
 func _on_sprint_signal():
 	speedMultiplier = 1.5
 	buff_timer(5.0, "Ускорение")
@@ -66,11 +70,22 @@ func _on_immortality_signal():
 	onImmortality = true
 	buff_timer(3.5, "Бессмертие")
 
+#debuff functions
+func _on_slow_signal():
+	speedMultiplier = 0.5
+	debuff_timer(5.0, "Замедление")
+func _on_gigant_signal():
+	scale.x = 1.5
+	scale.y = 1.5
+	debuff_timer(5.0, "Гигант")
+
 func buff_timer(sec: float, buff: String):
 	var i = 0
-	while i < sec:
+	Main.buff_textSignal.emit(buff, sec-i)
+	while i <= sec:
 		await get_tree().create_timer(1.0).timeout
 		Main.buff_textSignal.emit(buff, sec-i)
+		print(str(i) + " " + str(sec))
 		i += 1
 	if  i >= sec:
 		Main.buff_default_textSignal.emit()
@@ -83,3 +98,21 @@ func buff_timer(sec: float, buff: String):
 				scale.y = 1
 			"Бессмертие":
 				onImmortality = false
+
+func debuff_timer(sec: float, debuff: String):
+	var i = 0
+	
+	while i <= sec:
+		await get_tree().create_timer(1.0).timeout
+		Main.debuff_textSignal.emit(debuff, sec-i)
+		print(str(i) + " " + str(sec))
+		i += 1
+	if i >= sec:
+		Main.debuff_default_textSignal.emit()
+		
+		match debuff:
+			"Замедление":
+				speedMultiplier = 1.0
+			"Гигант":
+				scale.x = 1.0
+				scale.y = 1.0

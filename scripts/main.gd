@@ -10,11 +10,15 @@ signal immortalitySignal
 #debuff signals
 signal slowSignal
 signal gigantSignal
-signal blidnessSignal
 
 #label signals
 signal buff_textSignal
 signal buff_default_textSignal
+
+signal debuff_textSignal
+signal debuff_default_textSignal
+
+signal score_changeSignal
 
 var playerIsDead = false
 var meteor = preload("res://meteor.tscn")
@@ -25,6 +29,7 @@ func _ready() -> void:
 	spawn_meteors(0)
 	spawn_buffs()
 	Main.playerDead.connect(_on_player_dead)
+	Main.score_changeSignal.connect(_on_buff)
 	
 	#buffs signals initialize
 	initialize_buffs()
@@ -81,9 +86,6 @@ func spawn_buffs():
 func initialize_buffs():
 	Main.sprintSignal.connect(_on_buff)
 	Main.miniSignal.connect(_on_buff)
-	Main.assasinSignal.connect(_on_buff)
 	Main.immortalitySignal.connect(_on_buff)
-	Main.double_chanceSignal.connect(_on_buff)
 	Main.slowSignal.connect(_on_buff)
 	Main.gigantSignal.connect(_on_buff)
-	Main.blidness.connect(_on_buff)
