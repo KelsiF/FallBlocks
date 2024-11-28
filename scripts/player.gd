@@ -59,25 +59,25 @@ func _on_player_dead():
 
 func _on_sprint_signal():
 	speedMultiplier = 1.5
-	buff_timer(5.0, "Ускорение")
+	buff_timer(5.0, "Sprint")
 
 func _on_mini_signal():
 	scale.x = 0.5
 	scale.y = 0.5
-	buff_timer(3.5, "Уменьшение")
+	buff_timer(3.5, "Decrease in size")
 
 func _on_immortality_signal():
 	onImmortality = true
-	buff_timer(3.5, "Бессмертие")
+	buff_timer(3.5, "Immortality")
 
 #debuff functions
 func _on_slow_signal():
 	speedMultiplier = 0.5
-	debuff_timer(5.0, "Замедление")
+	debuff_timer(5.0, "Slowdown")
 func _on_gigant_signal():
 	scale.x = 1.5
 	scale.y = 1.5
-	debuff_timer(5.0, "Гигант")
+	debuff_timer(5.0, "Increase in size")
 
 func buff_timer(sec: float, buff: String):
 	var i = 0
@@ -91,12 +91,12 @@ func buff_timer(sec: float, buff: String):
 		Main.buff_default_textSignal.emit()
 		
 		match buff:
-			"Ускорение":
+			"Sprint":
 				speedMultiplier = 1.0
-			"Уменьшение":
+			"Decrease in size":
 				scale.x = 1
 				scale.y = 1
-			"Бессмертие":
+			"Immortality":
 				onImmortality = false
 
 func debuff_timer(sec: float, debuff: String):
@@ -111,8 +111,8 @@ func debuff_timer(sec: float, debuff: String):
 		Main.debuff_default_textSignal.emit()
 		
 		match debuff:
-			"Замедление":
+			"Slowdown":
 				speedMultiplier = 1.0
-			"Гигант":
+			"Increase in size":
 				scale.x = 1.0
 				scale.y = 1.0

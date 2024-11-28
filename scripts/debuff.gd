@@ -19,6 +19,7 @@ func _on_body_entered(body: Node) -> void:
 				slow_debuff()
 			"gigant":
 				gigant_debuff()
+	remove_self()
 
 
 func slow_debuff():
@@ -26,3 +27,7 @@ func slow_debuff():
 
 func gigant_debuff():
 	Main.gigantSignal.emit()
+
+func remove_self():
+	await get_tree().create_timer(5.0).timeout
+	get_tree().call_deferred("queue_free")

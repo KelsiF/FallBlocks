@@ -35,10 +35,10 @@ func _on_immortality_signal():
 	print("immortality buff")
 	buff_timer(3.0)
 
-
 func buff_timer(sec: float):
 	var i = 0
-	while i < sec:
+	while i <= sec:
 		await get_tree().create_timer(1.0).timeout
-		#изменение оставшегося времени
 		i += 1
+	if i >= sec:
+		onImmortality = false

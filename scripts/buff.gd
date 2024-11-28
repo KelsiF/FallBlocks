@@ -21,6 +21,7 @@ func _on_body_entered(body: Node) -> void:
 				mini_buff()
 			"immortality":
 				immortality_buff()
+	remove_self()
 
 
 func sprint_buff():
@@ -31,3 +32,7 @@ func mini_buff():
 
 func immortality_buff():
 	Main.immortalitySignal.emit()
+
+func remove_self():
+	await get_tree().create_timer(5.0).timeout
+	get_tree().call_deferred("queue_free")
