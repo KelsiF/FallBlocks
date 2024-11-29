@@ -21,13 +21,16 @@ signal debuff_default_textSignal
 signal score_changeSignal
 
 var playerIsDead = false
-var meteor = preload("res://meteor.tscn")
-var buff = preload("res://buff.tscn")
-var debuff = preload("res://debuff.tscn")
+var meteor = preload("res://scenes/meteor.tscn")
+var buff = preload("res://scenes/buff.tscn")
+var debuff = preload("res://scenes/debuff.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_meteors(0)
-	spawn_buffs()
+	if get_tree().current_scene.name == "1 level":
+		spawn_meteors(0)
+		spawn_buffs()
+
 	Main.playerDead.connect(_on_player_dead)
 	Main.score_changeSignal.connect(_on_buff)
 	
@@ -50,20 +53,25 @@ func _on_buff():
 func spawn_meteors(count):
 	var rng = RandomNumberGenerator.new()
 	
+	# проверка конкретной сцены, является ли она игровым уровнем
+	if get_tree().current_scene.name == "1 level":
 	
-	while playerIsDead == false:
-		var x = rng.randf_range(0, 1270)
-		var y = rng.randf_range(-70, -900)
-		var instance = meteor.instantiate()
-		instance.position = Vector2(x, y)
-		await get_tree().create_timer(rng.randf_range(0.1, 0.5)).timeout
-		add_child(instance)
+		while playerIsDead == false:
+			var x = rng.randf_range(0, 1270)
+			var y = rng.randf_range(-70, -900)
+			var instance = meteor.instantiate()
+			instance.position = Vector2(x, y)
+			await get_tree().create_timer(rng.randf_range(0.1, 0.5)).timeout
+			add_child(instance)
+	else:
+		print("this is not level")
 
 func spawn_buffs():
 	
 	var rng = RandomNumberGenerator.new()
 	var chanceBuff = 1
 	var buffSpawned = false
+	
 	
 	while playerIsDead == false:
 		await get_tree().create_timer(10.0).timeout

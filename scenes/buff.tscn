@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://brqaj51atjdll"]
+
+[ext_resource type="Script" path="res://scripts/buff.gd" id="1_5f771"]
+[ext_resource type="Texture2D" uid="uid://hro7i73h3oiw" path="res://sprites/buff.png" id="2_b4sdv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glffv"]
+size = Vector2(14, 14)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 5
+gravity_scale = 0.25
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_5f771")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_b4sdv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_glffv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
