@@ -7,6 +7,7 @@
 size = Vector2(14, 14)
 
 [node name="RigidBody2D" type="RigidBody2D"]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
 collision_layer = 2
 collision_mask = 5
 gravity_scale = 0.25
@@ -15,6 +16,7 @@ max_contacts_reported = 10
 script = ExtResource("1_tyyd1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_7nwhi")

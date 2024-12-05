@@ -15,6 +15,7 @@ max_contacts_reported = 10
 script = ExtResource("1_qmo7k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1.25, 1.25, 1.25, 1)
 texture_filter = 1
 position = Vector2(4, -4)
 scale = Vector2(3.96, 3.96)

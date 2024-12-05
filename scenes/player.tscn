@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://lxdqmxrdeo4d"]
+[gd_scene load_steps=7 format=3 uid="uid://lxdqmxrdeo4d"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_yglf6"]
 [ext_resource type="Texture2D" uid="uid://bgjhkcyh24egv" path="res://sprites/character-Sheet.png" id="2_ylcwx"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ogi01"]
+polygon = PackedVector2Array(-14, 10, -14, 22, -12, 22, -12, 30, -10, 30, -10, 32, -6, 32, -6, 30, -4, 30, -4, 28, -2, 28, -2, 26, 0, 26, 0, 28, 2, 28, 2, 30, 6, 30, 6, 28, 8, 28, 8, 23, 8, 22, 10, 22, 10, 10, 8, 10, 8, 8, 12, 8, 12, 6, 14, 6, 14, 4, 16, 4, 16, 0, 18, 0, 18, 2, 22, 2, 22, 0, 24, 0, 24, -4, 22, -4, 22, -16, 20, -16, 20, -18, 18, -18, 18, -20, 16, -20, 16, -22, 10, -22, 10, -24, -12, -24, -12, -26, -22, -26, -22, -24, -24, -24, -24, -22, -22, -22, -22, -18, -24, -18, -24, -14, -26, -14, -26, -12, -24, -12, -24, -10, -26, -10, -26, -8, -28, -8, -28, -4, -26, -4, -26, -2, -22, -2, -22, -4, -20, -4, -20, 4, -18, 4, -18, 6, -16, 6, -16, 8, -12, 8, -12, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tkpu7"]
 atlas = ExtResource("2_ylcwx")
@@ -30,11 +33,18 @@ texture_filter = 1
 collision_mask = 4
 script = ExtResource("1_yglf6")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ogi01")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-24, -22, -24, -24, -22, -24, -22, -26, -12, -26, -12, -24, 10, -24, 10, -22, 16, -22, 16, -20, 18, -20, 18, -18, 20, -18, 20, -16, 22, -16, 22, -4, 24, -4, 24, 0, 22, 0, 22, 2, 18, 2, 18, 0, 16, 0, 16, 4, 14, 4, 14, 6, 12, 6, 12, 8, 8, 8, 8, 10, 10, 10, 10, 22, 8, 22, 8, 28, 6, 28, 6, 30, 2, 30, 2, 28, 0, 28, 0, 26, -2, 26, -2, 28, -4, 28, -4, 30, -6, 30, -6, 32, -10, 32, -10, 30, -12, 30, -12, 22, -14, 22, -14, 10, -12, 10, -12, 8, -16, 8, -16, 5, -16, 6, -18, 6, -18, 4, -20, 4, -20, -4, -22, -4, -22, -2, -26, -2, -26, -4, -28, -5, -28, -8, -26, -8, -26, -10, -24, -10, -24, -12, -26, -12, -26, -14, -24, -14, -24, -18, -22, -18, -22, -22)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_k48u0")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+visible = false
 light_mask = 0
 position = Vector2(-2, 3)
 polygon = PackedVector2Array(-12, 7, -12, 19, -10, 19, -10, 27, -8, 27, -8, 29, -4, 29, -4, 27, -2, 27, -2, 25, 0, 25, 0, 23, 2, 23, 2, 25, 4, 25, 4, 29, 8, 29, 8, 25, 10, 25, 10, 19, 12, 19, 12, 7, 10, 7, 10, 5, 14, 5, 14, 3, 16, 3, 16, 1, 18, 1, 20, -1, 24, -1, 24, -19, 20, -21, 18, -22, -20, -22, -22, -17, -24, -17, -24, -15, -22, -15, -22, -13, -24, -13, -26, -11, -26, -8, -25, -7, -24, -7, -24, -5, -20, -5, -18, -7, -18, 1, -16, 1, -16, 3, -14, 3, -14, 5, -10, 5)

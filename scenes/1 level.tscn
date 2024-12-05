@@ -1,15 +1,28 @@
-[gd_scene load_steps=5 format=4 uid="uid://c4idu5q5m2uid"]
+[gd_scene load_steps=6 format=4 uid="uid://c4idu5q5m2uid"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ik0xy"]
 [ext_resource type="PackedScene" uid="uid://cy7ypu06okbq2" path="res://scenes/block.tscn" id="2_08ja3"]
 [ext_resource type="PackedScene" uid="uid://lxdqmxrdeo4d" path="res://scenes/player.tscn" id="3_r6bha"]
 [ext_resource type="PackedScene" uid="uid://cme02ufidu0ik" path="res://ui/MainUI.tscn" id="4_l1f70"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Environment" id="Environment_mg548"]
+background_mode = 3
+background_color = Color(0.428332, 0.769908, 0.869586, 1)
+glow_enabled = true
+glow_intensity = 8.0
+glow_hdr_threshold = 0.75
+adjustment_saturation = 1.25
+
+[node name="1 level" type="Node2D"]
 script = ExtResource("1_ik0xy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mg548")
 
 [node name="Player" parent="." instance=ExtResource("3_r6bha")]
 position = Vector2(605, 520)
+
+[node name="Polygon2D" type="Polygon2D" parent="Player"]
 
 [node name="Area2D" parent="." instance=ExtResource("2_08ja3")]
 position = Vector2(140, 702)
@@ -20,3 +33,9 @@ offset_left = 3.0
 offset_top = 6.0
 offset_right = 3.0
 offset_bottom = 6.0
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.41
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 1

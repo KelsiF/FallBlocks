@@ -1,25 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://brqaj51atjdll"]
+[gd_scene load_steps=4 format=3 uid="uid://bxsmqw8fvy3ku"]
 
-[ext_resource type="Script" path="res://scripts/buff.gd" id="1_5f771"]
-[ext_resource type="Texture2D" uid="uid://hro7i73h3oiw" path="res://sprites/buff.png" id="2_b4sdv"]
+[ext_resource type="Script" path="res://scripts/none_buff.gd" id="1_ffu1k"]
+[ext_resource type="Texture2D" uid="uid://6f3bi3x1t42x" path="res://sprites/none_buff.png" id="2_mof6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glffv"]
 size = Vector2(14, 14)
 
 [node name="RigidBody2D" type="RigidBody2D"]
-self_modulate = Color(1.5, 1.5, 1.5, 1)
 collision_layer = 2
 collision_mask = 5
 gravity_scale = 0.25
 contact_monitor = true
 max_contacts_reported = 10
-script = ExtResource("1_5f771")
+script = ExtResource("1_ffu1k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1.5, 1.5, 1.5, 1)
+self_modulate = Color(1.25, 1.25, 1.25, 1)
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("2_b4sdv")
+texture = ExtResource("2_mof6k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)

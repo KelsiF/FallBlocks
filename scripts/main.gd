@@ -24,6 +24,7 @@ var playerIsDead = false
 var meteor = preload("res://scenes/meteor.tscn")
 var buff = preload("res://scenes/buff.tscn")
 var debuff = preload("res://scenes/debuff.tscn")
+var none_buff = preload("res://scenes/none_buff.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -83,13 +84,24 @@ func spawn_buffs():
 			if (buffOrDebuff >= 50):
 				var instanceBuff = buff.instantiate()
 				instanceBuff.position = Vector2(rng.randf_range(0, 1270), rng.randf_range(-70, -900))
-				await get_tree().create_timer(0.5)
+				await get_tree().create_timer(0.5).timeout
 				add_child(instanceBuff)
+				
+				if rng.randi_range(1, 100) <= 25:
+					var instanceNone = none_buff.instantiate()
+					instanceNone.position = Vector2(rng.randf_range(0, 1270), rng.randf_range(-70, -900))
+					await get_tree().create_timer(0.5).timeout
+					add_child(instanceNone)
 			elif (buffOrDebuff < 50):
 				var instanceDebuff = debuff.instantiate()
 				instanceDebuff.position = Vector2(rng.randf_range(0, 1270), rng.randf_range(-70, -900))
-				await get_tree().create_timer(0.5)
+				await get_tree().create_timer(0.5).timeout
 				add_child(instanceDebuff)
+				if rng.randi_range(1, 100) <= 25:
+					var instanceNone = none_buff.instantiate()
+					instanceNone.position = Vector2(rng.randf_range(0, 1270), rng.randf_range(-70, -900))
+					await get_tree().create_timer(0.5).timeout
+					add_child(instanceNone)
 
 func initialize_buffs():
 	Main.sprintSignal.connect(_on_buff)
